@@ -4,7 +4,7 @@ class CreateJobs < ActiveRecord::Migration[5.2]
       t.string :employer_id
       t.string :employee_id
       t.string :title
-       t.string :address
+      t.string :address
       t.string :state
       t.datetime :date
 
