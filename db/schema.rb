@@ -24,8 +24,6 @@ ActiveRecord::Schema.define(version: 2018_07_03_183332) do
 
   create_table "employers", force: :cascade do |t|
     t.string "name"
-    t.string "address"
-    t.string "state"
     t.string "uid"
     t.string "email"
     t.string "password_digest"
@@ -37,6 +35,8 @@ ActiveRecord::Schema.define(version: 2018_07_03_183332) do
     t.string "employer_id"
     t.string "employee_id"
     t.string "title"
+    t.string "address"
+    t.string "state"
     t.datetime "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
