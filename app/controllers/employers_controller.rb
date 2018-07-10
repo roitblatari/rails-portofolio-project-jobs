@@ -12,7 +12,8 @@ class EmployersController < ApplicationController
   end
 
   def show
-    
+    # binding.pry
+  @employer = Employer.find_by(id: params[:id])
   end
 
 
