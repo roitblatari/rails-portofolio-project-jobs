@@ -1,0 +1,14 @@
+employer_id
+employee_id
+title
+address
+state
+date
+<h1><%= @employer.name %></h1>
+<%= form_for(@job) do |f| %>
+<p>title: <%= f.text_field :title %></p>
+<p>address: <%= f.text_field :address %></p>
+<p>state: <%= f.text_field :state %></p>
+<p>date: <%= f.text_field :date %></p>
+<%= f.submit %>
+<% end %>
