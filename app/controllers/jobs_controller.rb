@@ -9,13 +9,18 @@ class JobsController < ApplicationController
 
   def create
     @employer = Employer.find_by(id: params[:employer_id])
-  @job = Job.create(title: params[:job][:title], address: params[:job][:address], state: params[:job][:state])
-  # binding.pry
-  redirect_to job_path(@job)
+    @job = Job.new(title: params[:job][:title], address: params[:job][:address], state: params[:job][:state])
+    @job.employer = @employer
+    @job.save
+
+  redirect_to employer_job_path(@employer, @job)
   end
 
-
-
+def show
+  # @employer = Employer.find_by(id: params[:employer_id])
+  @job = Job.find_by(id: params[:id])
+  binding.pry
+end
 private
 
 # def job_params
