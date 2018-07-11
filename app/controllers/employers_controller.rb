@@ -7,7 +7,7 @@ class EmployersController < ApplicationController
     @employer = Employer.new(employer_params)
     @employer.save
 
-    # binding.pry
+    binding.pry
     redirect_to employer_path(@employer)
   end
 

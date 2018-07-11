@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   resources :employees do
     resources :jobs
   end
+   resources :jobs  , only: [ :index , :show ]
+
   resources :employers do
     resources :jobs
   end
