@@ -9,10 +9,10 @@ Rails.application.routes.draw do
 
 
   resources :employees do
-    resources :jobs, only: [:show, :edit, :update, :delete, :destroy  ]
+    resources :jobs
   end
   resources :employers do
-    resources :jobs, only: [:show, :new, :create, :edit, :update]
+    resources :jobs
   end
 
 
