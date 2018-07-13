@@ -18,9 +18,26 @@ class JobsController < ApplicationController
 
 def show
   # @employer = Employer.find_by(id: params[:employer_id])
+  @employee = Employee.find_by(id: params[:employee_id])
+  @job.employee = @employee
   @job = Job.find_by(id: params[:id])
-  binding.pry
 end
+
+def index
+  # binding.pry
+  @employee = Employee.find_by(id: params[:employee_id])
+  @jobs = Job.all
+end
+
+def destroy
+  @employee = Employee.find_by(id: params[:employee_id])
+  binding.pry
+  @job = Job.find_by(id: params[:id])
+  @job.destroy
+  # @job.delete
+  redirect_to employee_jobs_path(@employee)
+end
+
 private
 
 # def job_params
