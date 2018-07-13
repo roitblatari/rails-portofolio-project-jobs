@@ -1,5 +1,12 @@
-<% binding.pry %>
+
 <h1><%= @job.title %> For <%= @job.employer.name %></h1>
 <p> <b><%= @job.address %></b></p>
 <p> <b><%= @job.state %></b></p>
 <p> <b><%= @job.date %></b></p>
+ <% if @employee %>
+    <%= link_to 'Go to jobs',   employee_jobs_path(@employee) %>
+    <% binding.pry %>
+    <%= link_to 'Click Me if job is Done',   delete_employee_job_path(@employee, @job)  %>
+<% else %>
+  <%= link_to "Jobs" , jobs_path %>
+<% end %>
