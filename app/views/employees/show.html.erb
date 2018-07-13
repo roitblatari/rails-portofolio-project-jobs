@@ -1,7 +1,8 @@
 
 
-  <%=  @employee.name%>
-  <%=  @employee.email %>
-  <%=  @employee.profession %>
+<b>  <%=  @employee.name%></b><br>
+  <%=  @employee.email %><br>
+  <%=  @employee.profession %><br>
+  <br>
 
-  <%= link_to 'Jobs', new_employer_job_path(@employee) %> # employee_jobs_path to = employee/:id/jobs
+  <%= link_to 'Find Jobs', employee_jobs_path(@employee) %> # employee_jobs_path to = employee/:id/jobs
