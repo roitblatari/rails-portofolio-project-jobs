@@ -4,12 +4,16 @@ Rails.application.routes.draw do
   get 'sessions/destroy'
   root to: 'static#welcome'
 
+  get '/employees/:id/jobs/:id', to: 'jobs#destroy', as:'delete_employee_job'
+
+  post 'jobs/destroy' => 'sessions#destroy'
+
   get 'auth/:provider/callback', to: 'session#create'
 
 
 
   resources :employees do
-    resources :jobs
+    resources :jobs, only: [:edit, :update, :delete ,:destroy ,:index , :show ]
   end
    resources :jobs  , only: [ :index , :show ]
 
