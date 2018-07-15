@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'sessions/destroy'
   root to: 'static#welcome'
 
-  get '/employees/:id/jobs/:id', to: 'jobs#destroy', as:'delete_employee_job'
+  delete '/employees/:id/jobs/:id', to: 'jobs#destroy', as:'delete_employee_job'
 
   post 'jobs/destroy' => 'sessions#destroy'
 
