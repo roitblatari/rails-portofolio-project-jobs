@@ -17,10 +17,14 @@ class JobsController < ApplicationController
   end
 
 def show
-  # @employer = Employer.find_by(id: params[:employer_id])
+    @job = Job.find_by(id: params[:id])
+  @employer = Employer.find_by(id: params[:employer_id])
   @employee = Employee.find_by(id: params[:employee_id])
-  @job.employee = @employee
-  @job = Job.find_by(id: params[:id])
+
+  if @employee != nil
+      @job.employee = @employee
+  end
+
 end
 
 def index
@@ -40,10 +44,10 @@ end
 
 private
 
-# def job_params
-#   params.require(:job).permit( :employer_id, :title, :address, :state, :date)
+  # def job_params
+  #   params.require(:job).permit( :employer_id, :title, :address, :state, :date)
+  # end
 
-# end
   # def employer
   #   @employer = Employer.find_by(id: params[:employer_id])
   # end
