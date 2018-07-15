@@ -6,7 +6,14 @@ class ApplicationController < ActionController::Base
 
 
   def current_user
-     Employee.find_by_id(session[:employee_id]) || Employer.find_by_id(session[:employer_id])
+    if  Employee.find_by(id: session[:employee_id])
+      @employee = current_user
+    elsif Employer.find_by(id: session[:employer_id])
+      @employer = current_user
+    else
+      redirect_to root_path
+    end
+
   end
 
   # private
