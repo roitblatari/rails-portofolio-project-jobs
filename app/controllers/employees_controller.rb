@@ -7,9 +7,9 @@ class EmployeesController < ApplicationController
     @employee = Employee.new(employee_params)
 
     if @employee.save
-      employee_session
+      session[:employee_id] = @employee.id 
       redirect_to employee_path(@employee)
-    else
+    else 
       redirect_to root_path
     end
     # binding.pry
