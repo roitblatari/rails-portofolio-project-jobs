@@ -5,10 +5,12 @@ class EmployersController < ApplicationController
 
   def create
     @employer = Employer.new(employer_params)
-    @employer.save
-
-    # binding.pry
-    redirect_to employer_path(@employer)
+    if @employer.save
+      session[:employer_id] = @employer.id 
+      redirect_to employer_path(@employer)
+    else 
+      redirect_to root_path
+    end
   end
 
   def show
