@@ -13,16 +13,16 @@ class JobsController < ApplicationController
     @job.employer = @employer
     @job.save
 
-  redirect_to employer_job_path(@employer, @job)
+    redirect_to employer_job_path(@employer, @job)
   end
 
 def show
-    @job = Job.find_by(id: params[:id])
+  @job = Job.find_by(id: params[:id])
   @employer = Employer.find_by(id: params[:employer_id])
   @employee = Employee.find_by(id: params[:employee_id])
 
   if @employee != nil
-      @job.employee = @employee
+    @job.employee = @employee
   end
 
 end
