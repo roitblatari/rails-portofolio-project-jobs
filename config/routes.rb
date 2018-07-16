@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
-  get 'sessions/create'
-  get 'sessions/destroy'
+  get 'session/new'
+  get 'session/create'
+  # get 'sessions/destroy'
+  get '/signin', to: 'session#new'
+  post '/signin', to: 'session#create'
+  get '/logout', to: 'session#destroy'
+
+
   root to: 'static#welcome'
 
   delete '/employees/:id/jobs/:id', to: 'jobs#destroy', as:'delete_employee_job'
