@@ -6,7 +6,7 @@ class SessionController < ApplicationController
   def create
     if params[:provider] == 'github'
       #create or find user with github emaila and log them in
-  
+
       @employer = Employer.find_or_create_by(email: auth['info']['email'])  do |u|
 
         u.name = auth['info']['name']
@@ -26,6 +26,8 @@ class SessionController < ApplicationController
   end
 
   def destroy
+    session.destroy
+    redirect_to :root
   end
 
 private
