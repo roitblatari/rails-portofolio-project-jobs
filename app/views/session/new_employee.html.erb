@@ -1,0 +1,10 @@
+<h1>Please Login</h1>
+
+
+<%= form_tag({controller: 'session', action: 'create_employee', method: 'post'}) do %>
+  <label for="email" id="email">Email</label>
+  <input type="text" name="email" id="email"><br>
+  <label for="password" id="password">Password</label>
+  <input type="password" name="password" id="password"><br><br>
+  <input type="submit" value='Submit' >
+<% end %>
