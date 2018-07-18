@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   get '/logout', to: 'session#destroy'
 
 
+  get '/signin_employee', to: 'session#new_employee'
+  post '/signin_employee', to: 'session#create_employee'
+  get '/signin_employer', to: 'session#new_employer'
+  post '/signin_employer', to: 'session#create_employer'
   root to: 'static#welcome'
 
   delete '/employees/:id/jobs/:id', to: 'jobs#destroy', as:'delete_employee_job'
