@@ -1,6 +1,7 @@
 class JobsController < ApplicationController
   # before_action :employer, only: [new]
-
+  # before_action :logged_in
+  # skip_before_action :logged_in, only: [:new, :create, :show, :index ]
   def new
     @employer = Employer.find_by(id: params[:employer_id])
     @job = Job.new
@@ -9,18 +10,20 @@ class JobsController < ApplicationController
 
   def create
     @employer = Employer.find_by(id: params[:employer_id])
-    @job = Job.new(title: params[:job][:title], address: params[:job][:address], state: params[:job][:state])
+    @job = Job.new(title: params[:job][:title], address: params[:job][:address], state: params[:job][:state],date: params[:job][:date])
     @job.employer = @employer
-    @job.save
-
-    redirect_to employer_job_path(@employer, @job)
+    if @job.save
+      redirect_to employer_job_path(@employer, @job)
+    else
+      render :new
+    end
   end
 
 def show
   @job = Job.find_by(id: params[:id])
   @employer = Employer.find_by(id: params[:employer_id])
   @employee = Employee.find_by(id: params[:employee_id])
-
+# binding.pry
   if @employee != nil
     @job.employee = @employee
   end
@@ -37,8 +40,9 @@ def destroy
   @employee = Employee.find_by(id: params[:employee_id])
   binding.pry
   @job = Job.find_by(id: params[:id])
+  @job.employee = @employee 
   @job.destroy
-  # @job.delete
+  # @job.clear
   redirect_to employee_jobs_path(@employee)
 end
 
