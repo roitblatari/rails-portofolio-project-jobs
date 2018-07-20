@@ -2,7 +2,7 @@
 <h1><%= @job.title %> For <%= @job.employer.name %></h1>
 <p> <b><%= @job.address %></b></p>
 <p> <b><%= @job.state %></b></p>
-<p> <b><%= @job.date %></b></p>
+<p><%= display_date(@job.date) %></p>
  <% if @employee %>
     <%= link_to 'Go to jobs',   employee_jobs_path(@employee) %>
 
