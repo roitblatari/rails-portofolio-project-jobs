@@ -32,7 +32,7 @@ class SessionController < ApplicationController
   def create_employer
     # binding.pry
     @employer = Employer.find_by(email: params[:email])
-    if @employer != nil
+    if @employer != nil && @employer.authenticate(params[:password])
       session[:employer_id] = @employer.id
       # binding.pry
       redirect_to employer_path(@employer)
@@ -44,7 +44,7 @@ class SessionController < ApplicationController
   def create_employee
       # binding.pry
     @employee = Employee.find_by(email: params[:email])
-    if @employee != nil
+    if @employee != nil && @employee.authenticate(params[:password])
       session[:employee_id] = @employee.id
       # binding.pry
       redirect_to employee_path(@employee)
