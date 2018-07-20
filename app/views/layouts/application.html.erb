@@ -14,14 +14,14 @@
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
               <a class="navbar-brand" href="http://0.0.0.0:3000/">Home</a>
             </button>
-            <% if @current_user == nil %>
 
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-             <%= link_to "Employer's Login", signin_employer_path %>
-            </button>
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <%= link_to "Employee's Login", signin_employee_path %>
-            </button>
+            <% if @current_user == nil %>
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+               <%= link_to "Employer's Login", signin_employer_path %>
+              </button>
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <%= link_to "Employee's Login", signin_employee_path %>
+              </button>
             <% end %>
             <% if @current_user  %>
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
