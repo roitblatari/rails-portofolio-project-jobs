@@ -34,6 +34,7 @@ class SessionController < ApplicationController
     @employer = Employer.find_by(email: params[:email])
     if @employer != nil
       session[:employer_id] = @employer.id
+      # binding.pry
       redirect_to employer_path(@employer)
     else
       redirect_to root_path
@@ -45,6 +46,7 @@ class SessionController < ApplicationController
     @employee = Employee.find_by(email: params[:email])
     if @employee != nil
       session[:employee_id] = @employee.id
+      # binding.pry
       redirect_to employee_path(@employee)
     else
       redirect_to root_path
@@ -53,6 +55,7 @@ class SessionController < ApplicationController
 
   def destroy
     session.destroy
+    @current_user = nil
     redirect_to :root
   end
 
