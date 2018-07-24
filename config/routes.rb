@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   resources :employees do
     resources :jobs, only: [:edit, :update, :delete ,:destroy ,:index , :show ]
   end
-   resources :jobs  , only: [ :index , :show ]
+   resources :jobs  , only: [ :index , :show, :upcoming_jobs ]
 
   resources :employers do
     resources :jobs
