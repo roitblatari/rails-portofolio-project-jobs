@@ -1,14 +1,15 @@
 class ApplicationController < ActionController::Base
+  # enable :sessions
   protect_from_forgery with: :exception
   before_action :current_user
    def logged_in?
     !!current_user
   end
-  
+
   def current_user
-    if Employer.find_by_id(session[:employer_id]) 
+    if Employer.find_by_id(session[:employer_id])
       @current_user ||= Employer.find_by_id(session[:employer_id])
-    elsif Employee.find_by_id(session[:employee_id]) 
+    elsif Employee.find_by_id(session[:employee_id])
       @current_user ||= Employee.find_by_id(session[:employee_id])
     else
       nil

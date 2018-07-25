@@ -20,29 +20,35 @@ class JobsController < ApplicationController
   end
 
 def show
+  # binding.pry
   @job = Job.find_by(id: params[:id])
   @employer = Employer.find_by(id: params[:employer_id])
   @employee = Employee.find_by(id: params[:employee_id])
-# binding.pry
-  if @employee != nil
+  if @employee
     @job.employee = @employee
+    # @job.update(employee_id: params[:employee_id])
   end
-
 end
 
 def index
-  # binding.pry
+  # @employer = Employer.find_by(id: params[:employer_id])
   @employee = Employee.find_by(id: params[:employee_id])
   @jobs = Job.all
 end
 
-def destroy
+def upcoming_jobs
+  # binding.pry
+  # @jobs = Job.future_jobs(Time.now)
   @employee = Employee.find_by(id: params[:employee_id])
-  binding.pry
-  @job = Job.find_by(id: params[:id])
-  @job.employee = @employee 
+  @jobs = Job.future_jobs(Date.today)
+end
+
+def destroy
+  # binding.pry
+  @employee = Employee.find_by(id: params[:employee_id])
+  @job = Job.find_by(id: params[:job_id])
   @job.destroy
-  # @job.clear
+
   redirect_to employee_jobs_path(@employee)
 end
 
