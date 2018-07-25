@@ -1,4 +1,5 @@
 class SessionController < ApplicationController
+  # use Rack::Flash
   def new
   # binding.pry
   end
@@ -37,7 +38,8 @@ class SessionController < ApplicationController
       # binding.pry
       redirect_to employer_path(@employer)
     else
-      redirect_to root_path
+      flash[:message] = "Incorrect Email or Password."
+      render :new_employer
     end
   end
 
@@ -49,7 +51,7 @@ class SessionController < ApplicationController
       # binding.pry
       redirect_to employee_path(@employee)
     else
-      redirect_to root_path
+      render :new_employee
     end
   end
 

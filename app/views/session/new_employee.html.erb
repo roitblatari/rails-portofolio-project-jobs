@@ -1,6 +1,8 @@
 <h1>Please Login</h1>
 
-
+<% if flash[:message] %>
+  <%= flash[:message] %>
+<% end %>
 <%= form_tag({controller: 'session', action: 'create_employee', method: 'post'}) do %>
   <label for="email" id="email">Email</label>
   <input type="text" name="email" id="email"><br>
