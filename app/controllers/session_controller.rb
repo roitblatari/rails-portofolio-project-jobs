@@ -51,6 +51,7 @@ class SessionController < ApplicationController
       # binding.pry
       redirect_to employee_path(@employee)
     else
+      flash[:message] = "Incorrect Email or Password."
       render :new_employee
     end
   end
