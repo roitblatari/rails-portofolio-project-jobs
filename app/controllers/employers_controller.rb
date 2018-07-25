@@ -1,7 +1,7 @@
 class EmployersController < ApplicationController
   before_action :current_user
   before_action :require_logged_in, except: [:new, :create, :home]
- 
+
   # before_action :logged_in
   # skip_before_action :logged_in, only: [:new, :create]
 
@@ -15,7 +15,7 @@ class EmployersController < ApplicationController
       session[:employer_id] = @employer.id
       redirect_to employer_path(current_user)
     else
-      redirect_to root_path
+      render :new
     end
   end
 

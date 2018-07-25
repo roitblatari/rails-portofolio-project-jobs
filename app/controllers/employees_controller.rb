@@ -1,7 +1,7 @@
 class EmployeesController < ApplicationController
   before_action :current_user
   before_action :require_logged_in, except: [:new, :create]
- 
+
   # before_action :logged_in
   # skip_before_action :logged_in, only: [:new, :create]
 
@@ -12,17 +12,17 @@ class EmployeesController < ApplicationController
   def create
     @employee = Employee.new(employee_params)
 
-    if @employee.save 
+    if @employee.save
       session[:employee_id] = @employee.id
       redirect_to employee_path(@employee)
     else
-      redirect_to root_path
+      render :new
     end
   end
 
-  def show 
+  def show
   @employee = Employee.find_by(id: params[:id])
-    if  current_user != @employee 
+    if  current_user != @employee
       redirect_to employee_path(@current_user)
     end
   end
