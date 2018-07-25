@@ -1,0 +1,16 @@
+
+<% @jobs.each do |job| %>
+ <p> <b> <%= job.title %> For <%= job.employer.name %></b><br>
+
+  <%= job.title %><br>
+  <%= job.address %><br>
+  <%= job.state %><br>
+  <%= display_date(job.date) %>
+
+
+
+  <% if @employee %>
+    <%= link_to 'Go to job',   employee_job_path(@employee, job) %>
+  <% end %>
+  </p>
+<% end  %>
