@@ -1,12 +1,16 @@
-<%binding.pry  %>
+
 <h1><%= @job.title %> For <%= @job.employer.name %></h1>
 <p> <b><%= @job.address %></b></p>
 <p> <b><%= @job.state %></b></p>
 <p><%= display_date(@job.date) %></p>
- <% if @employee %>
-    <%= link_to 'Go to jobs',   employee_jobs_path(@employee) %>
 
-    <%= link_to 'Click Me if job is Done',   delete_employee_job_path(@employee, @job)  %>
+ <% if @employee %>
+  <%= link_to 'Go to jobs',   employee_jobs_path(@employee) %>
+  
+  <%= form_tag(delete_employee_job_path(employee_id: @employee.id, job_id: @job.id), method: :delete) do %>
+        <div><%= submit_tag 'Click Me if job is Done' %></div> 
+  <% end %>
 <% else %>
+<%= link_to 'Employer', employer_path %>
   <%= link_to "Jobs" , jobs_path %>
 <% end %>
