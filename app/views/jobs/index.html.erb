@@ -16,5 +16,9 @@
 <% end  %>
 
 <% if @employer %>
-  <%= link_to 'Employer', employer_path %>
+  <%= link_to 'Employer', employer_path(@employer) %>
+<% end %>
+
+<% if @employee %>
+  <%= link_to 'Employee', employee_path(@employee) %>
 <% end %>
