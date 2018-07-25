@@ -13,18 +13,22 @@ Rails.application.routes.draw do
   post '/signin_employer', to: 'session#create_employer'
   root to: 'static#welcome'
 
-  delete '/employees/:id/jobs/:id', to: 'jobs#destroy', as:'delete_employee_job'
+  delete '/employees/:employee_id/jobs/:job_id', to: 'jobs#destroy', as:'delete_employee_job'
 
   post 'jobs/destroy' => 'sessions#destroy'
 
   get 'auth/:provider/callback', to: 'session#create'
 
-
-
   resources :employees do
-    resources :jobs, only: [:edit, :update, :delete ,:destroy ,:index , :show ]
+    resources :jobs do
+      collection do
+        get 'upcoming_jobs'
+      end
+    end #, only: [:edit, :update, :delete ,:destroy ,:index , :show ]
   end
    resources :jobs  , only: [ :index , :show, :upcoming_jobs ]
+
+  get '/upcoming_jobs', to: 'jobs#upcoming_jobs', as:'upcoming_jobs'
 
   resources :employers do
     resources :jobs
