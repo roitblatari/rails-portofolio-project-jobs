@@ -3,42 +3,69 @@
   <head>
     <title>PortofolioProjectJobs</title>
     <%= csrf_meta_tags %>
-    
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-<!-- /////////////////////////// -->
 
+<!-- /////////////////////////// -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="http://0.0.0.0:3000/">Get The Job Done</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+    <% if @current_user.class == Employer %>
+      <%= link_to "Home", employer_path(@current_user), class: "navbar-brand"%>
+    <% end %>
+    <% if @current_user.class == Employee %>
+      <%= link_to "Home", employee_path(@current_user), class: "navbar-brand"%>
+    <% end %>
+      <div  <% if @current_user == nil %> >
+              <%= link_to "Employer's Login", signin_employer_path, class: "btn btn-info"%>
+              <%= link_to "Employee's Login", signin_employee_path, class: "btn btn-info"%>
+            <% end  %>
+            <div  <% if @current_user  %> >
+                  <%= link_to "Logout", logout_path,  class: "navbar-brand" %>
+            <% end %>
+      </div>
+
+    </div>
+  </div>
+</nav>
     <!--  ///////////////////////////-->
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <!-- <div  >
       <div class="container">
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
+        <div >
+          <ul >
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
               <a class="navbar-brand" href="http://0.0.0.0:3000/">Home</a>
             </button>
 
             <% if @current_user == nil %>
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <button type="button" class="navbar-toggle btn btn-danger" data-toggle="collapse" data-target=".navbar-collapse">
                <%= link_to "Employer's Login", signin_employer_path, class: "navbar-brand"%>
               </button>
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <button type="button"  data-toggle="collapse" data-target=".navbar-collapse">
                 <%= link_to "Employee's Login", signin_employee_path, class: "navbar-brand" %>
               </button>
             <% end %>
             <% if @current_user  %>
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <button type="button"  data-toggle="collapse" data-target=".navbar-collapse">
                 <%= link_to 'Logout', logout_path,  class: "navbar-brand" %>
               </button>
             <% end %>
           </ul>
-        </div><!--/.nav-collapse -->
+        </div> --> <!--/.nav-collapse --><!--
       </div>
     </div>
-
+ari -->
+<div class="container">
     <%= yield %>
 
+</div>
     <footer>
       <a class="navbar-brand" href="<%= root_url %>"/>Home</a>
     </footer>
