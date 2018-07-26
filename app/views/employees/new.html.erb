@@ -6,7 +6,6 @@
      <%= pluralize(@employee.errors.count, "error") %>
      prohibited this employee from being saved:
    </h2>
-
    <ul>
    <% @employee.errors.full_messages.each do |msg| %>
      <li><%= msg %></li>
@@ -22,4 +21,4 @@
   <p> password: <%= f.password_field :password  %></p>
   <%= f.submit %>
 <% end %>
-<h2><%= link_to 'Or Login Here', signin_employee_path %>  </h2>
+<!-- current_user.class.errors.any == @employee.errors.any ? so i can make a _error.html? and where whold is go? -->
