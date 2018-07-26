@@ -4,5 +4,9 @@
   <%=  @employee.profession %><br>
   <br>
 
-  <%= link_to 'Find Jobs', employee_jobs_path(@employee) %> # employee_jobs_path to = employee/:id/jobs
+<button type="button" class="btn btn-light">
+  <%= link_to 'Find Jobs', employee_jobs_path(@employee) %>
+</button>
+<button type="button" class="btn btn-light">
   <%= link_to 'Upcoming Jobs', upcoming_jobs_employee_jobs_path(@employee) %>
+  </button>
