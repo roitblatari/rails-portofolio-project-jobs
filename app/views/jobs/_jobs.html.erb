@@ -1,0 +1,23 @@
+<% jobs.each do |job| %>
+ <p> <b> <%= job.title %> For <%= job.employer.name %></b><br>
+
+  <%= job.title %><br>
+  <%= job.address %><br>
+  <%= job.state %><br>
+  <%= display_date(job.date) %>
+
+
+
+  <% if employee %>
+    <%= link_to 'Go to job',   employee_job_path(employee, job), class: "btn btn-info"%>
+  <% end %>
+  </p>
+<% end  %>
+
+<% if employee %>
+  <%= link_to 'Employee', employee_path(employee), class: "btn btn-info" %>
+<% end %>
+
+<% if employer %>
+  <%= link_to 'Employer', employer_path(employer), class: "btn btn-info" %>
+<% end %>
