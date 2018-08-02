@@ -5,12 +5,12 @@
 <p><%= display_date(@job.date) %></p>
 
  <% if @employee %>
-  <%= link_to 'Go to jobs',   employee_jobs_path(@employee) %>
-  
   <%= form_tag(delete_employee_job_path(employee_id: @employee.id, job_id: @job.id), method: :delete) do %>
-        <div><%= submit_tag 'Click Me if job is Done' %></div> 
-  <% end %>
-<% else %>
-<%= link_to 'Employer', employer_path %>
-  <%= link_to "Jobs" , jobs_path %>
+        <div><%= submit_tag 'Click Me if job is Done',class: "btn btn-info" %></div>
+  <% end %><br>
+  <%= link_to 'Go to jobs',   employee_jobs_path(@employee), class: "btn btn-info" %>
+  <%= link_to "take job ", take_job_path(@employee, @job) , method: "post" ,class: "btn btn-info"%>
+<% elsif @employer %>
+  <%= link_to 'Create Another Job', new_employer_job_path(@employer), class: "btn btn-info" %>
+  <%= link_to "Other Jobs Created" ,  my_created_jobs_employer_jobs_path(@employer), class: "btn btn-info"%>
 <% end %>
