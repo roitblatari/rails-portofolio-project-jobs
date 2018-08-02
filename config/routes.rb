@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   delete '/employees/:employee_id/jobs/:job_id', to: 'jobs#destroy', as:'delete_employee_job'
 
   post 'jobs/destroy' => 'sessions#destroy'
+  post '/employees/:employee_id/jobs/:job_id/take_job' => 'jobs#take_job', as: "take_job"
 
   get 'auth/:provider/callback', to: 'session#create'
 
@@ -26,13 +27,19 @@ Rails.application.routes.draw do
       end
     end #, only: [:edit, :update, :delete ,:destroy ,:index , :show ]
   end
-   resources :jobs  , only: [ :index , :show, :upcoming_jobs ]
-
-  get '/upcoming_jobs', to: 'jobs#upcoming_jobs', as:'upcoming_jobs'
-
   resources :employers do
-    resources :jobs
+    resources :jobs do
+      collection do
+        get 'my_created_jobs'
+      end
+    end
   end
+   # resources :jobs  , only: [ :index , :show, :upcoming_jobs ]
+
+  # get '/upcoming_jobs', to: 'jobs#upcoming_jobs', as:'upcoming_jobs'
+
+
+
 
 
 
