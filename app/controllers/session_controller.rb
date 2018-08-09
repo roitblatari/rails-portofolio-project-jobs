@@ -23,11 +23,9 @@ class SessionController < ApplicationController
 
 
   def new_employer
-
   end
 
   def new_employee
-
   end
 
   def create_employer
