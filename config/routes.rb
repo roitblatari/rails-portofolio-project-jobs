@@ -1,20 +1,23 @@
 Rails.application.routes.draw do
-  get 'session/new'
-  get 'session/create'
-  get '/signin', to: 'session#new'
-  post '/signin', to: 'session#create'
-  get '/logout', to: 'session#destroy'
 
+  # get 'session/new'
+  # get 'session/create'
+
+  # get '/signin', to: 'session#new'
+  # post '/signin', to: 'session#create'
+
+  get '/logout', to: 'session#destroy'
 
   get '/signin_employee', to: 'session#new_employee'
   post '/signin_employee', to: 'session#create_employee'
   get '/signin_employer', to: 'session#new_employer'
   post '/signin_employer', to: 'session#create_employer'
+  
   root to: 'static#welcome'
 
   delete '/employees/:employee_id/jobs/:job_id', to: 'jobs#destroy', as:'delete_employee_job'
   post 'jobs/destroy' => 'sessions#destroy'
-  
+
   post '/employees/:employee_id/jobs/:job_id/take_job' => 'jobs#take_job', as: "take_job"
 
   get 'auth/:provider/callback', to: 'session#create'
