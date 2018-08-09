@@ -39,7 +39,12 @@ class JobsController < ApplicationController
 
   def upcoming_jobs
     @employee = Employee.find_by(id: params[:employee_id])
-    @jobs = Job.future_jobs(Date.today)
+    @jobs = Job.future_jobs
+  end
+
+  def past_jobs
+    @employee = Employee.find_by(id: params[:employee_id])
+    @jobs = Job.past_jobs
   end
 
   def my_created_jobs
