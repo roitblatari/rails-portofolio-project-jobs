@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   post '/signin_employee', to: 'session#create_employee'
   get '/signin_employer', to: 'session#new_employer'
   post '/signin_employer', to: 'session#create_employer'
-  
+
   root to: 'static#welcome'
 
   delete '/employees/:employee_id/jobs/:job_id', to: 'jobs#destroy', as:'delete_employee_job'
@@ -26,9 +26,11 @@ Rails.application.routes.draw do
     resources :jobs do
       collection do
         get 'upcoming_jobs'
+        get 'past_jobs'
       end
     end
   end
+
   resources :employers do
     resources :jobs do
       collection do
