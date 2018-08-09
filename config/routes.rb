@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   get 'session/new'
   get 'session/create'
-  # get 'sessions/destroy'
   get '/signin', to: 'session#new'
   post '/signin', to: 'session#create'
   get '/logout', to: 'session#destroy'
@@ -14,8 +13,8 @@ Rails.application.routes.draw do
   root to: 'static#welcome'
 
   delete '/employees/:employee_id/jobs/:job_id', to: 'jobs#destroy', as:'delete_employee_job'
-
   post 'jobs/destroy' => 'sessions#destroy'
+  
   post '/employees/:employee_id/jobs/:job_id/take_job' => 'jobs#take_job', as: "take_job"
 
   get 'auth/:provider/callback', to: 'session#create'
@@ -25,7 +24,7 @@ Rails.application.routes.draw do
       collection do
         get 'upcoming_jobs'
       end
-    end #, only: [:edit, :update, :delete ,:destroy ,:index , :show ]
+    end
   end
   resources :employers do
     resources :jobs do
@@ -34,14 +33,6 @@ Rails.application.routes.draw do
       end
     end
   end
-   # resources :jobs  , only: [ :index , :show, :upcoming_jobs ]
-
-  # get '/upcoming_jobs', to: 'jobs#upcoming_jobs', as:'upcoming_jobs'
-
-
-
-
-
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
