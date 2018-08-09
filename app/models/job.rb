@@ -7,11 +7,7 @@ class Job < ApplicationRecord
   validates :state, presence: :true
   validates :date, presence: :true
 
-  scope :future_jobs, -> (date) { where("date > ?", Date.today) }
-  # scope :my_jobs, -> (employer) { where("employer_id == ?", Job.employer.id) }
+  scope :future_jobs, ->  { where("date > ?", Date.today) }
+  scope :past_jobs, -> { where("date < ?", Date.today) }
 
-  # scope :old_jobs, -> (date) { where("date < ?", Date.today) }
-  # scope :future_jobs, lambda { where("date > ?", Date.today) }
-  # scope :future_jobs, where(:date => Date.today)
-  # scope :name, lambda { |param| where(:field => "value") }
 end
